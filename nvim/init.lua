@@ -90,6 +90,14 @@ P.S. You can delete this when you're done too. It's your config now! :)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+
+vim.opt.smartindent = true
+
+vim.opt.wrap = false
 -- Set to true if you have a Nerd Font installed
 vim.g.have_nerd_font = false
 
@@ -135,6 +143,7 @@ vim.opt.timeoutlen = 300
 -- Configure how new splits should be opened
 vim.opt.splitright = true
 vim.opt.splitbelow = true
+vim.opt.shiftwidth = 4
 
 -- Sets how neovim will display certain whitespace in the editor.
 --  See `:help 'list'`
@@ -264,6 +273,13 @@ require('lazy').setup({
         changedelete = { text = '~' },
       },
     },
+  },
+  {
+    'windwp/nvim-autopairs',
+    event = 'InsertEnter',
+    config = true,
+    -- use opts = {} for passing setup options
+    -- this is equalent to setup({}) function
   },
 
   -- NOTE: Plugins can also be configured to run lua code when they are loaded.
@@ -583,6 +599,10 @@ require('lazy').setup({
           },
         },
       }
+      --require('lspconfig').html.setup {}
+      --require('lspconfig').cssls.setup {}
+      --require('lspconfig').tailwindcss.setup {}
+      --require('lspconfig').emmet_ls.setup {}
 
       -- Ensure the servers and tools above are installed
       --  To check the current status of installed tools and/or manually install
@@ -614,6 +634,21 @@ require('lazy').setup({
       }
     end,
   },
+
+  {
+    'mhartington/formatter.nvim',
+    event = 'VeryLazy',
+    opts = function()
+      return require 'custom.configs.formatter'
+    end,
+  },
+  --{
+  --  'jose-elias-alvarez/null-ls.nvim',
+  --  event = 'VeryLazy',
+  --  opts = function()
+  --    return require 'custom.configs.null-ls'
+  --  end,
+  --},
 
   { -- Autoformat
     'stevearc/conform.nvim',
@@ -745,8 +780,15 @@ require('lazy').setup({
     --vim.cmd.hi 'Comment gui=none'
     --end,
   },
+  --{
+  --  'mfussenegger/nvim-lint',
+  --  event = 'VeryLazy',
+  --  config = function()
+  --    require 'custom.configs.lint'
+  --  end,
+  --},
   { 'rebelot/kanagawa.nvim' },
-
+  { 'EdenEast/nightfox.nvim' },
   { 'savq/melange-nvim' },
   {
     'ellisonleao/gruvbox.nvim',
@@ -758,6 +800,7 @@ require('lazy').setup({
       vim.cmd.hi 'Comment gui=none'
     end,
   },
+  { 'rose-pine/neovim', name = 'rose-pine' },
 
   { 'bluz71/vim-moonfly-colors', name = 'moonfly' },
 
@@ -866,6 +909,7 @@ require('lazy').setup({
   },
 })
 
+--vim.cmd 'colorscheme terafox'
 vim.cmd 'colorscheme kanagawa-dragon'
 vim.cmd 'highlight Normal ctermbg=none'
 vim.cmd 'highlight NonText ctermbg=none'
