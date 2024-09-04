@@ -281,6 +281,10 @@ require('lazy').setup({
     -- use opts = {} for passing setup options
     -- this is equalent to setup({}) function
   },
+  { 'Olical/conjure' },
+  { 'clojure-vim/vim-jack-in' },
+  { 'radenling/vim-dispatch-neovim' },
+  { 'tpope/vim-dispatch' },
 
   -- NOTE: Plugins can also be configured to run lua code when they are loaded.
   --
@@ -314,6 +318,10 @@ require('lazy').setup({
     end,
   },
 
+  {
+    'giusgad/pets.nvim',
+    dependencies = { 'MunifTanjim/nui.nvim', 'giusgad/hologram.nvim' },
+  },
   -- NOTE: Plugins can specify dependencies.
   --
   -- The dependencies are proper plugin specifications as well - anything
@@ -853,7 +861,7 @@ require('lazy').setup({
 
       ---@diagnostic disable-next-line: missing-fields
       require('nvim-treesitter.configs').setup {
-        ensure_installed = { 'bash', 'c', 'html', 'lua', 'markdown', 'vim', 'vimdoc' },
+        ensure_installed = { 'bash', 'c', 'html', 'lua', 'markdown', 'vim', 'vimdoc', 'clojure' },
         -- Autoinstall languages that are not installed
         auto_install = true,
         highlight = { enable = true },
@@ -908,6 +916,8 @@ require('lazy').setup({
     },
   },
 })
+
+require('pets').setup {}
 
 --vim.cmd 'colorscheme terafox'
 vim.cmd 'colorscheme kanagawa-dragon'
